@@ -3,8 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
-
+import com.github.javafaker.Faker;
 /**
  * Hello world!
  *
@@ -56,6 +55,29 @@ public class App
                 60.00, true, tables.get("T01"), menusToOrders ));
 
         System.out.println(orders);
+
+        Faker faker = new Faker();
+
+
+
+        String food1 = faker.food().measurement();
+        String food2 = faker.food().dish();
+        String food3 = faker.food().sushi();
+        String food4 = faker.food().fruit();
+        String food5 = faker.food().spice();
+        String food6 = faker.food().vegetable();
+
+        Menu menuToTest = new Menu();
+
+        menuToTest.setContent(food6);
+        menuToTest.setName("Menu Monday");
+        menuToTest.setPrice(52.00);
+
+        System.out.println(menuToTest);
+
+
+
+
 
 
     }

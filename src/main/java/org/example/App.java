@@ -58,10 +58,24 @@ public class App
 
         Faker faker = new Faker();
 
+
+
         String food1 = faker.food().measurement();
         String food2 = faker.food().dish();
         String food3 = faker.food().sushi();
         String food4 = faker.food().fruit();
+        String food5 = faker.food().spice();
+        String food6 = faker.food().vegetable();
+
+        Menu menuToTest = new Menu();
+
+        menuToTest.setContent(food6);
+        menuToTest.setName("Menu Monday");
+        menuToTest.setPrice(52.00);
+
+        System.out.println(menuToTest);
+
+
 
 
 

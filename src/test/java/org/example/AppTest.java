@@ -42,6 +42,7 @@ public class AppTest
     public void generalTest(){
 
         Menu menu1 = new Menu("Menu Lisboa", 25.00, "Meat, Salad, Tuna", true, true);
+        menu1 = null;
         Menu menu2 = new Menu();
         menu2.isActive();
         menu2.isWater();

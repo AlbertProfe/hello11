@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +19,7 @@ public class Order {
     private boolean paid;
     Table table;
     ArrayList<Menu> menus = new ArrayList<>();
+
 
 
 }

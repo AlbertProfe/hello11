@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,5 +14,9 @@ public class Menu {
     private String content;
     private boolean active;
     private boolean water;
+
+    public void print(){
+
+    }
 
 }

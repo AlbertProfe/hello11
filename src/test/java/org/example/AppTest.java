@@ -3,6 +3,9 @@ package org.example;
 import static org.junit.Assert.assertTrue;
 
 import com.github.javafaker.Faker;
+import org.example.model.Menu;
+import org.example.model.Order;
+import org.example.model.Table;
 import org.junit.Test;
 
 import java.util.ArrayList;

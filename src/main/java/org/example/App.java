@@ -1,9 +1,7 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import com.github.javafaker.Faker;
+import org.example.controller.HealthyController;
+
 /**
  * Hello world!
  *
@@ -19,6 +17,7 @@ public class App
         // call static start methods from class HealthyController
         // because it will start the app
         HealthyController.start();
+
 
         System.out.println( "Finish" );
 

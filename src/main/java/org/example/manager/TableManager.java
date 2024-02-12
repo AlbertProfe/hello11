@@ -1,40 +1,32 @@
-package org.example;
+package org.example.manager;
 
-import java.util.ArrayList;
+import org.example.model.Menu;
+import org.example.model.Table;
+
 import java.util.HashMap;
 
-public class MenuManager {
+public class TableManager {
 
-    private HashMap<String, Menu> menus;
+    private HashMap<String, Table> tables;
     private int size;
     private int maxSize;
     private String name;
     private String location;
 
-
-    public MenuManager() {
-        this.menus = new HashMap<String, Menu>();
+    public TableManager() {
+        this.tables =  new HashMap<String, Table>();
     }
 
-    public ArrayList<Menu> createFakeMenus (int size){
+    public void saveTable(Table table){
 
-
-
-        return null;
-
+        tables.put("VETWE54", table);
+    }
+    public HashMap<String, Table> getTables() {
+        return tables;
     }
 
-    public void saveMenu(Menu menu){
-
-        menus.put("VETWE54", menu);
-    }
-
-    public HashMap<String, Menu> getMenus() {
-        return menus;
-    }
-
-    public void setMenus(HashMap<String, Menu> menus) {
-        this.menus = menus;
+    public void setTables(HashMap<String, Table> tables) {
+        this.tables = tables;
     }
 
     public int getSize() {
@@ -71,8 +63,8 @@ public class MenuManager {
 
     @Override
     public String toString() {
-        return "MenuManager{" +
-                "menus=" + menus +
+        return "TableManager{" +
+                "tables=" + tables +
                 ", size=" + size +
                 ", maxSize=" + maxSize +
                 ", name='" + name + '\'' +

@@ -1,84 +1,31 @@
 package org.example.manager;
 
 import org.example.model.Menu;
+import org.example.utils.CommonUtilities;
+import org.example.repository.MenuRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Scanner;
 
 public class MenuManager {
 
-    private HashMap<String, Menu> menus;
-    private int size;
-    private int maxSize;
-    private String name;
-    private String location;
+    public static void createMenu (Scanner scanner, MenuRepository menuDB_toCreateAndSave){
 
+        System.out.println("\nWelcome to CREATE Menu");
+        Menu menu = new Menu();
+        String name = CommonUtilities.ask (scanner, "Menu name? ");
 
-    public MenuManager() {
-        this.menus = new HashMap<String, Menu>();
-    }
+        menu.setName(name);
 
-    public ArrayList<Menu> createFakeMenus (int size){
-
-
-
-        return null;
+        menuDB_toCreateAndSave.saveMenu(menu);
 
     }
 
-    public void saveMenu(Menu menu){
-
-        menus.put("VETWE54", menu);
+    public static MenuRepository createDB (){
+        MenuRepository menuRepoDB = new MenuRepository();
+        menuRepoDB.setLocation("Paris");
+        menuRepoDB.setMaxSize(1000);
+        menuRepoDB.setName("db of menus healthyFood");
+        return menuRepoDB;
     }
 
-    public HashMap<String, Menu> getMenus() {
-        return menus;
-    }
-
-    public void setMenus(HashMap<String, Menu> menus) {
-        this.menus = menus;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int getMaxSize() {
-        return maxSize;
-    }
-
-    public void setMaxSize(int maxSize) {
-        this.maxSize = maxSize;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    @Override
-    public String toString() {
-        return "MenuManager{" +
-                "menus=" + menus +
-                ", size=" + size +
-                ", maxSize=" + maxSize +
-                ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
-                '}';
-    }
 }

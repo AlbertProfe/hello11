@@ -12,6 +12,7 @@ public class Table {
     private String name;
     private String description;
     private int qty;
+    private boolean busy;
 
 
 }

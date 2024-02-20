@@ -2,12 +2,15 @@ package org.example.controller;
 
 import org.example.manager.TableManager;
 import org.example.manager.MenuManager;
+import org.example.manager.OrderManager;
+import org.example.repository.OrderRepository;
 import org.example.utils.CommonUtilities;
 import org.example.repository.MenuRepository;
 import org.example.repository.TableRepository;
 import org.example.view.MenuOptions;
 
 
+import javax.swing.text.Utilities;
 import java.util.Scanner;
 
 public class HealthyController {
@@ -18,14 +21,15 @@ public class HealthyController {
         // the app will use them very often
         Scanner scanner = new Scanner(System.in);
 
+        // fake repo creation for menus, tables and orders
+        // by calling the static method
         MenuRepository menuRepoDB = MenuManager.createDB();
-        //MenuManager menuDB = new MenuManager();
-        //menuDB.createFakeMenus(5);
+        TableRepository tableRepoDB = TableManager.createDB();
+        OrderRepository orderRepoDB = OrderManager.createDB();
 
-        TableRepository tableRepoDB = new TableRepository();
-        tableRepoDB.setSize(50);
-        tableRepoDB.setLocation("Paris");
-        tableRepoDB.setName("db of tables healthyFood");
+
+        CommonUtilities.createFakeData(menuRepoDB, tableRepoDB);
+
 
         // main loop controller with options
         while(true){
@@ -42,10 +46,14 @@ public class HealthyController {
             } else if (option.equals("2")){
                 //listMenus();
                 System.out.println(menuRepoDB);
-            } else if (option.equals("3")){
+            } else if (option.equals("6")){
                 TableManager.createTable(scanner, tableRepoDB);
-            } else if (option.equals("4")){
+            } else if (option.equals("7")){
+                //listTables();
                 System.out.println(tableRepoDB);
+            } else if (option.equals("10")){
+                //listTables();
+               OrderManager.createOrder(scanner, orderRepoDB, tableRepoDB);
             } else if (option.equals("0")){ break; }
         }
     }

@@ -20,12 +20,36 @@ public class MenuManager {
 
     }
 
+    // create menu repo
     public static MenuRepository createDB (){
         MenuRepository menuRepoDB = new MenuRepository();
         menuRepoDB.setLocation("Paris");
         menuRepoDB.setMaxSize(1000);
         menuRepoDB.setName("db of menus healthyFood");
         return menuRepoDB;
+    }
+
+    public static void deleteMenu (){
+
+    }
+
+    public static void createFakeMenus (MenuRepository menuRepoDB) {
+
+        Menu menu1 = new Menu();
+        menu1.setName("Lisboa");
+        menu1.setWater(false);
+        menu1.setPrice(10.00);
+        menu1.setActive(true);
+
+        Menu menu2 = new Menu();
+        menu2.setName("New York");
+        menu2.setWater(false);
+        menu2.setPrice(12.00);
+        menu2.setActive(true);
+
+        menuRepoDB.saveMenu(menu1);
+        menuRepoDB.saveMenu(menu2);
+
     }
 
 }

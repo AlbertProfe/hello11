@@ -17,8 +17,8 @@ public class Order {
     private int peopleQty;
     private double totalPayment;
     private boolean paid;
-    Table table;
-    ArrayList<Menu> menus = new ArrayList<>();
+    private Table table;
+    private ArrayList<Menu> menus = new ArrayList<>();
 
 
 

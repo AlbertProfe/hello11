@@ -1,5 +1,11 @@
 package org.example.utils;
 
+import org.example.manager.MenuManager;
+import org.example.manager.TableManager;
+import org.example.repository.MenuRepository;
+import org.example.repository.TableRepository;
+
+
 import java.util.Scanner;
 
 public class CommonUtilities {
@@ -8,5 +14,13 @@ public class CommonUtilities {
 
         System.out.println(textToAsk);
         return scanner.nextLine();
+    }
+
+    public static void createFakeData(MenuRepository menuRepoDB, TableRepository tableRepoDB) {
+
+        MenuManager.createFakeMenus(menuRepoDB);
+        TableManager.createFakeTables(tableRepoDB);
+
+
     }
 }

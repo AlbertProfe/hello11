@@ -53,7 +53,10 @@ public class HealthyController {
                 System.out.println(tableRepoDB);
             } else if (option.equals("10")){
                 //listTables();
-               OrderManager.createOrder(scanner, orderRepoDB, tableRepoDB);
+               OrderManager.createOrder(scanner, orderRepoDB, tableRepoDB, menuRepoDB);
+            } else if (option.equals("11")){
+                //listTables();
+                System.out.println(orderRepoDB);
             } else if (option.equals("0")){ break; }
         }
     }

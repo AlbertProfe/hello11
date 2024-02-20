@@ -72,4 +72,15 @@ public class OrderRepository {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    @Override
+    public String toString() {
+        return "OrderRepository{" +
+                "orders=" + orders +
+                ", size=" + size +
+                ", maxSize=" + maxSize +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                '}';
+    }
 }

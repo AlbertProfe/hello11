@@ -1,10 +1,14 @@
 package org.example.manager;
 
+import org.example.model.Menu;
 import org.example.model.Order;
+import org.example.repository.MenuRepository;
 import org.example.repository.OrderRepository;
 import org.example.repository.TableRepository;
 import org.example.utils.CommonUtilities;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -21,59 +25,78 @@ public class OrderManager {
 
     public static void createOrder(Scanner scanner,
                                    OrderRepository orderRepoDB,
-                                   TableRepository tableRepoDB){
-
+                                   TableRepository tableRepoDB,
+                                   MenuRepository menuRepoDB){
+        // create object
         Order order1 = new Order();
 
-
         // create date
+        Date date = new Date();
+        order1.setDate(date);
 
-        //LocalDate date = new LocalDate();
-
+        // create waiter
         String waiter = CommonUtilities.ask(scanner, "Waiter? ");
-        // qty
 
-        order1.setWaiter(waiter);
+        // people qty
+        String qty = CommonUtilities.ask(scanner, "People qty? ");
+        try{
+            int qtyInt = Integer.parseInt(qty);
+            order1.setPeopleQty(qtyInt);
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }
 
-        AtomicInteger index = new AtomicInteger(1);
+        // create table
+        System.out.println("\nSelect table:");
         System.out.println("0 - Take Away");
         tableRepoDB.getTables().forEach((key, table) -> {
-            //System.out.println("Key=" + key + ", Value=" + value);
-
             // if table is not busy if (table.getName() == false)
-
-            System.out.println( index.getAndIncrement() + " - "+ table.getName());
+            System.out.println( key + " - "+ table.getName());
         });
+        String tableSelection = CommonUtilities.ask(scanner, "Table? ");
 
-        // create a for each java with tables hashmap to print available tables
-        // the goal is printing an option menu with 0 take away  and then set order.table to null
-        // and all tables with index++
+        if (tableSelection.equals("0")) order1.setTable(null);
+        else
+            order1.setTable(tableRepoDB.getTables().get(tableSelection));
 
 
-        // if take away
+        // create menus
+        System.out.println("\nSelect menus:");
+        ArrayList<Menu> menus = new ArrayList();
+        while(true) {
 
-        order1.setTable(null);
+            System.out.println("0 - Quit");
+            menuRepoDB.getMenus().forEach((key, menu) -> {
+                // if menu is active
+                System.out.println( key + " - " + menu.getName());
+            });
 
-        // if table#4
+            String option = CommonUtilities.ask(scanner, "Menu? ");
+            if (option.equals("0")){ break; }
+            else {
+                menus.add(menuRepoDB.getMenus().get(option));
+            }
 
-        //order1.setTable();
+        }
+        order1.setMenus(menus);
 
-        // while of menus ... to save each menu to arraylist
-        // I could create a list
-        // order1.getMenus
 
         // total payment
         double totalPayment = 0.0;
-
-        // foreach order1.menus
-        // menu.getPrice ++
-        // totalPayment = totalPayment + menu.getPrice
-
+        for(Menu menu : menus) {
+            totalPayment = totalPayment + menu.getPrice();
+        }
         order1.setTotalPayment(totalPayment);
 
+        // create paid
         order1.setPaid(false);
 
+        // saver order to repo
         orderRepoDB.saveOrder(order1);
+
+        System.out.println("\nOrder");
+        System.out.println(order1);
 
 
 
